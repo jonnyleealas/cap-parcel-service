@@ -21,15 +21,17 @@ console.log(obj);
 
 events.on('Delivered', thankYou);
 events.on('in transit', echoTransit);
-events.on('pickup', transit);
+events.on('order ready', transit);
+
 setInterval(newOrder, 5000);
 
 
 //event.emit: newOrder emits the new orders for driver to deliver
 function newOrder(){
-  events.emit('pickup', obj);
-}
+  events.emit('order ready', obj);
 
+}
+// set a time out of 1 second
 function transit(){
   console.log(chalk.bgBlue('picked up and in transit'),obj);
 }
