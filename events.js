@@ -21,3 +21,10 @@ describe('light, ()=>{
     }
 }),
 */
+
+/*
+const faker = require('faker')
+randomName= faker.name.findName();
+address = faker.address.streetAddress();
+
+*/
