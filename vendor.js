@@ -23,7 +23,7 @@ events.on('Delivered', thankYou);
 events.on('in transit', echoTransit);
 events.on('pickup', transit);
 setInterval(newOrder, 5000);
-console.log(newOrder);
+
 
 //event.emit: newOrder emits the new orders for driver to deliver
 function newOrder(){
@@ -31,10 +31,10 @@ function newOrder(){
 }
 
 function transit(){
-    console.log('picked up',obj);
+  console.log(chalk.bgBlue('picked up and in transit'),obj);
 }
 
-console.log(transit());
+
 // thankYou sends a thank you to driver once driver has delivered order
 function thankYou(payload){
   console.log(`Thank you for delivery of: ${payload}`);
