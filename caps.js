@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 'use strict';
-const events = require('./events')
-
+const events = require('./events');
 require('./vendor.js');
 require('./drivers');
 const chalk = require('chalk');

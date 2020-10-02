@@ -1,7 +1,12 @@
 'use strict';
-require('./events');
+const event = require('./events');
+const vendor = require('./vendor');
 
+event.on('order ready', pickThisUp);
 
+function pickThisUp(payload){
+  console.log('order ready for pickup:',payload);
+}
 
 
 /*

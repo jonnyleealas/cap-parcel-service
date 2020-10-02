@@ -28,6 +28,7 @@ setInterval(newOrder, 5000);
 
 //event.emit: newOrder emits the new orders for driver to deliver
 function newOrder(){
+
   events.emit('order ready', obj);
 }
 
