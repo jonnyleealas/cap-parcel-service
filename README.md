@@ -9,10 +9,12 @@ We have 2 major clients for this service: Vendors and Drivers. Each need to have
 ## Architecture:
 Libraries Used:
 ```
+faker
 
 ```
 
 ## Step 1
+After cloning repository
 ```
 Run npm i
 ```
@@ -40,6 +42,11 @@ npm test server.test.js
 - [] Drivers need a way to scan a package and alert the vendors that the package has been delivered
 
 - [] Middleware for 500 and 404 errors
+```
+### Dependencies
+```
+"dotenv": "^8.2.0",
+"faker": "^5.1.0"
 ```
 ### UML
 [Application UML Diagram](./assets/capuml.md)
