@@ -1,14 +1,18 @@
 /* eslint-disable no-undef */
-// 'use strict';
+'use strict';
+const events = require('./events')
 
-// require('./events');
-// require('./vendor.js');
-// require('./driver.js');
+require('./vendor.js');
+require('./drivers');
+const chalk = require('chalk');
 
-// events.on('pickup', pickUp);
-// function pickUp(payload){
-//   console.log(`Order ready for pickup: ${payload}`);
-// }
+
+
+events.on('order ready', transit);
+function transit(payload){
+  console.log(chalk.bgBlue('picked up and in transit'),payload);
+}
+
 
 /*
 ready for pickup

@@ -16,12 +16,12 @@ const obj = {
   customer: faker.name.findName(),
   address: faker.address.streetAddress(),
 };
-console.log(obj);
+
 // events on order runs pickup order console.log
 
 events.on('Delivered', thankYou);
 events.on('in transit', echoTransit);
-events.on('order ready', transit);
+
 
 setInterval(newOrder, 5000);
 
@@ -29,14 +29,10 @@ setInterval(newOrder, 5000);
 //event.emit: newOrder emits the new orders for driver to deliver
 function newOrder(){
   events.emit('order ready', obj);
-
 }
+
+
 // set a time out of 1 second
-function transit(){
-  console.log(chalk.bgBlue('picked up and in transit'),obj);
-}
-
-
 // thankYou sends a thank you to driver once driver has delivered order
 function thankYou(payload){
   console.log(`Thank you for delivery of: ${payload}`);
@@ -45,11 +41,7 @@ function thankYou(payload){
 function echoTransit(payload){
   console.log(`${chalk.bgMagenta('Transit confirmation order:', payload)}`);
 }
-
-
-// console.log({obj});
-
-module.exports = {newOrder, echoTransit, thankYou };
+module.exports = {newOrder, echoTransit, thankYou};
 
 
 /*
