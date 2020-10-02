@@ -2,6 +2,7 @@
 /* eslint-disable no-undef */
 'use strict';
 require('./events');
+const chalk = require('chalk');
 const faker = require('faker');
 const drivers = require('./drivers');
 const events = require('./events');
@@ -18,27 +19,31 @@ const obj = {
   customer,
   address,
 };
-
+// events on order runs pickup order console.log
 events.on('order', pickupOrder);
+events.on('Delivered', thankYou);
+events.on('in transit', echoTransit);
 
 
 function pickupOrder(payload){
   console.log('pickup order:',payload);
 }
-
+//newOrder emits the new orders for driver to deliver
 function newOrder(){
   events.emit('order', obj);
 }
-
-events.on('Delivered', thankYou);
-
+// thankYou sends a thank you to driver once driver has delivered order
 function thankYou(payload){
-  console.log(`Thank you for delivery of: ${payload}`)
+  console.log(`Thank you for delivery of: ${payload}`);
 }
+// echo of transit confirmation sent to driver
+function echoTransit(payload){
+  console.log(`${chalk.bgMagenta('Transit confirmation order:', payload)}`);
+}
+//make new order every 5 seconds
 setImmediate(newOrder, 5000);
 
-
-
+console.log(echoTransit());
 
 
 /*
