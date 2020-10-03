@@ -6,13 +6,15 @@ require('./drivers');
 const chalk = require('chalk');
 
 
+//this logs things that are happening.
+events.on('log', textReceived => log(textReceived));
 
-events.on('order ready', transit);
-function transit(payload){
-  console.log(chalk.bgBlue('picked up and in transit'),payload);
+function log(payload) {
+  let time = new Date();
+  console.log('Events', {
+    time,
+  }, payload);
 }
-
-
 /*
 ready for pickup
 in transit

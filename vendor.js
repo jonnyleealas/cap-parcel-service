@@ -5,17 +5,12 @@ require('./events');
 const chalk = require('chalk');
 const faker = require('faker');
 const drivers = require('./drivers');
+const caps = require('./caps');
 const events = require('./events');
 require('dotenv').config();
 const store = process.env.STORE || 'jonnys-store';
 
 
-const obj = {
-  store: store,
-  orderId: faker.random.uuid(),
-  customer: faker.name.findName(),
-  address: faker.address.streetAddress(),
-};
 
 // events on order runs pickup order console.log
 
@@ -28,19 +23,27 @@ setInterval(newOrder, 5000);
 
 //event.emit: newOrder emits the new orders for driver to deliver
 function newOrder(){
-
+  const obj = {
+    store: store,
+    orderId: faker.random.uuid(),
+    customer: faker.name.findName(),
+    address: faker.address.streetAddress(),
+  };
+  
   events.emit('order ready', obj);
 }
 
+// echo of transit confirmation sent to driver
+function echoTransit(payload){
+  let text = `${chalk.bgMagenta('Transit confirmation order:')}` + JSON.stringify(payload);
+  events.emit('log', text);
+}
 
 // set a time out of 1 second
 // thankYou sends a thank you to driver once driver has delivered order
 function thankYou(payload){
-  console.log(`Thank you for delivery of: ${payload}`);
-}
-// echo of transit confirmation sent to driver
-function echoTransit(payload){
-  console.log(`${chalk.bgMagenta('Transit confirmation order:', payload)}`);
+  let text = 'Thank you for delivery of:'+ JSON.stringify(payload);
+  events.emit('log', text);
 }
 module.exports = {newOrder, echoTransit, thankYou};
 
