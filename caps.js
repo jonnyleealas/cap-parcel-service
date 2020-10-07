@@ -7,7 +7,7 @@ const chalk = require('chalk');
 
 
 //this logs things that are happening.
-events.on('log', textReceived => log(textReceived));
+events.on('log', payload => log(payload));
 
 function log(payload) {
   let time = new Date();
@@ -15,12 +15,4 @@ function log(payload) {
     time,
   }, payload);
 }
-/*
-ready for pickup
-in transit
-delivered
-logs timestamp of every event in console with payload
-event{
-}
 
-*/

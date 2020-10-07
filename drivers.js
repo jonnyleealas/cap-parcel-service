@@ -7,17 +7,14 @@ const chalk = require('chalk');
 events.on('order ready', pickThisUp);
 
 function pickThisUp(payload){
-
-  console.log('fuck face',payload.orderId)
-
+  console.log(`${chalk.bgGray('Order Waiting For Pickup:')}`,payload);
   setInterval(() => {
     isInTransit(payload);
   }, 1000);
 }
 
 function isInTransit(payload) {
-
-  let text = console.log(`${chalk.bgGray('Order In Transit')}`, payload.orderId);
+  let text = console.log(`${chalk.bgCyan('Order In Transit')}`, payload.orderId);
   events.emit('in transit', text);
   setInterval(() => {
     delivered(payload);
@@ -26,7 +23,7 @@ function isInTransit(payload) {
 
 
 function delivered(payload) {
-  events.emit('Delivered', payload);
+  events.emit('delivered', payload);
 }
 
 
