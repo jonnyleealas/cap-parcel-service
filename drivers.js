@@ -2,13 +2,14 @@
 'use strict';
 const events = require('./events');
 const vendor = require('./vendor');
+const chalk = require('chalk');
 
 events.on('order ready', pickThisUp);
 
 function pickThisUp(payload){
-  // let text = 'order ready for pickup:' + JSON.stringify(payload);
+
   console.log('fuck face',payload.orderId)
-  // events.emit('log', payload);
+
   setInterval(() => {
     isInTransit(payload);
   }, 1000);
@@ -16,8 +17,8 @@ function pickThisUp(payload){
 
 function isInTransit(payload) {
 
-  console.log('Order In Transist:', payload.orderId);
-  events.emit('in transit', payload);
+  let text = console.log(`${chalk.bgGray('Order In Transit')}`, payload.orderId);
+  events.emit('in transit', text);
   setInterval(() => {
     delivered(payload);
   }, 3000);
