@@ -1,31 +1,43 @@
 /* eslint-disable no-undef */
 'use strict';
 const events = require('./events');
-// const vendor = require('./vendor');
+const vendor = require('./vendor');
 
 events.on('order ready', pickThisUp);
 
-function pickThisUp(litterallyAnything){
-  let text = 'order ready for pickup:' + JSON.stringify(litterallyAnything);
-  events.emit('log', text);
+function pickThisUp(payload){
+  // let text = 'order ready for pickup:' + JSON.stringify(payload);
+  console.log('fuck face',payload.orderId)
+  // events.emit('log', payload);
   setInterval(() => {
-    isInTransit(litterallyAnything);
+    isInTransit(payload);
   }, 1000);
 }
 
-function isInTransit(obj) {
-  let text = 'driver picked up order' + obj.orderId;
-  events.emit('log', text);
-  events.emit('in transit', obj);
+function isInTransit(payload) {
+
+  console.log('Order In Transist:', payload.orderId);
+  events.emit('in transit', payload);
   setInterval(() => {
-    delivered(obj);
+    delivered(payload);
   }, 3000);
 }
 
 
-function delivered(obj) {
-  events.emit('Delivered', obj);
+function delivered(payload) {
+  events.emit('Delivered', payload);
 }
+
+
+
+
+
+
+
+
+
+
+
 /*
 /*
 monitors system

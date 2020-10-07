@@ -2,14 +2,13 @@
 /* eslint-disable no-undef */
 'use strict';
 require('./events');
-const chalk = require('chalk');
 const faker = require('faker');
+const chalk = require('chalk');
 const drivers = require('./drivers');
 const caps = require('./caps');
 const events = require('./events');
 require('dotenv').config();
 const store = process.env.STORE || 'jonnys-store';
-
 
 
 // events on order runs pickup order console.log
@@ -18,34 +17,35 @@ events.on('Delivered', thankYou);
 events.on('in transit', echoTransit);
 
 
-setInterval(newOrder, 5000);
-
-
-//event.emit: newOrder emits the new orders for driver to deliver
-function newOrder(){
+// setInterval(newOrder, 5000);
+setInterval(()=>{
   const obj = {
+    time: faker.date.recent(),
     store: store,
     orderId: faker.random.uuid(),
     customer: faker.name.findName(),
     address: faker.address.streetAddress(),
   };
-  
   events.emit('order ready', obj);
-}
+}, 5000);
+
+
 
 // echo of transit confirmation sent to driver
 function echoTransit(payload){
-  let text = `${chalk.bgMagenta('Transit confirmation order:')}` + JSON.stringify(payload);
+  // let text = `${chalk.bgMagenta('Transit confirmation order:')}` + JSON.stringify(payload);
+  let text = console.log(`${chalk.bgMagenta('Transit Confirmation Order:')}`, payload);
   events.emit('log', text);
 }
 
 // set a time out of 1 second
 // thankYou sends a thank you to driver once driver has delivered order
 function thankYou(payload){
-  let text = 'Thank you for delivery of:'+ JSON.stringify(payload);
+  
+  let text = console.log(`${chalk.bgGreen('Thank you for delivery of order:')}`,payload.orderId);
   events.emit('log', text);
 }
-module.exports = {newOrder, echoTransit, thankYou};
+module.exports = {echoTransit, thankYou};
 
 
 /*
