@@ -4,15 +4,10 @@
 require('./events');
 const faker = require('faker');
 const chalk = require('chalk');
-const drivers = require('./drivers'); 
-const caps = require('./caps');
+const drivers = require('./drivers');
 const events = require('./events');
 require('dotenv').config();
 const store = process.env.STORE || 'jonnys-store';
-
-
-// Events.on(delivered) calls thanks function
-events.on('delivered', thanks);
 
 // Creates Faker Obj
 setInterval(()=>{
@@ -26,6 +21,14 @@ setInterval(()=>{
   events.emit('order ready', obj);
 }, 5000);
 
+// Events.on(delivered) calls thanks function
+events.on('delivered', intervalThanks);
+
+function intervalThanks(payload){
+  setInterval(() => {
+    thanks(payload);
+  }, 1000);
+}
 // Sends Thank You
 function thanks(payload){
   let text = console.log(`${chalk.bgGreen('Thank you for delivery of order:')}`,payload.orderId);

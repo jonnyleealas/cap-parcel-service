@@ -11,11 +11,11 @@ function pickThisUp(payload){
   console.log(`${chalk.bgGray('DRIVER: picked up order:')}`,payload);
   setInterval(() => {
     isInTransit(payload);
-  }, 2000);
+  }, 1000);
 }
 // Wait 3 seconds log Delivered
 function isInTransit(payload) {
-  let text = console.log(`${chalk.bgCyan('Delivered:')}`, payload.orderId);
+  let text = console.log(`${chalk.bgCyan('In Transit:')}`, payload.orderId);
   events.emit('in transit', text);
   setInterval(() => {
     delivered(payload);
