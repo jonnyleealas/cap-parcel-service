@@ -22,9 +22,7 @@ Run npm i
 Touch .env and use the following variables so hide backend secrets.
 ```
 add a .env folder in your root 
-Add a PORT=<path>
-Add a SECRET=<secret>
-Add a MONGODB_URI=<path>
+
 ```
 ## Testing
 ``` 
@@ -32,19 +30,15 @@ npm test server.test.js
 ```
 ### Task Checklist
 ```
-- [] As products are sold that need to be delivered, we need to alert the drivers that a package is ready for pickup/delivery
+- [x] As products are sold that need to be delivered, we need to alert the drivers that a package need pickup.
+- [x] As a driver picks up a package, the store owner should know that the package is now “in transit”
+- [x] Once the driver delivers a package, the store owner should know that the package has been delivered
+- [x] Drivers need a way to scan a package and alert the vendors that the package is in transit
 
-- [] As a driver picks up a package, the store owner should know that the package is now “in transit”
-
-- [] Once the driver delivers a package, the store owner should know that the package has been delivered
-- [] As stores sell product and need a package delivered, Drivers need an instant notification to pick the package up
-- [] Drivers need a way to scan a package and alert the vendors that the package is in transit
-- [] Drivers need a way to scan a package and alert the vendors that the package has been delivered
-
-- [] Middleware for 500 and 404 errors
 ```
 ### Dependencies
 ```
+"chalk": "^4.1.0",
 "dotenv": "^8.2.0",
 "faker": "^5.1.0"
 ```
