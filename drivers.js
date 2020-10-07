@@ -7,21 +7,22 @@ const chalk = require('chalk');
 events.on('order ready', pickThisUp);
 
 function pickThisUp(payload){
-  console.log(`${chalk.bgGray('Order Waiting For Pickup:')}`,payload);
+  // console.log(`${chalk.bgGray('Order Waiting For Pickup:')}`,payload);
+  console.log(`${chalk.bgGray('DRIVER: picked up order:')}`,payload);
   setInterval(() => {
     isInTransit(payload);
-  }, 1000);
+  }, 2000);
 }
-
+// Wait 3 seconds log Delivered
 function isInTransit(payload) {
-  let text = console.log(`${chalk.bgCyan('Order In Transit')}`, payload.orderId);
+  let text = console.log(`${chalk.bgCyan('Delivered:')}`, payload.orderId);
   events.emit('in transit', text);
   setInterval(() => {
     delivered(payload);
   }, 3000);
 }
 
-
+// Emit a delivered event with payload
 function delivered(payload) {
   events.emit('delivered', payload);
 }

@@ -2,7 +2,7 @@
 'use strict';
 const events = require('./events');
 require('./vendor.js');
-require('./drivers');
+// require('./drivers');
 const chalk = require('chalk');
 
 
