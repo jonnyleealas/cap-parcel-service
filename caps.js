@@ -1,13 +1,11 @@
 /* eslint-disable no-undef */
 'use strict';
 const events = require('./events');
+const chalk = require('chalk');
 require('./vendor.js');
 require('./drivers.js');
 
-const chalk = require('chalk');
-
-
-//this logs things that are happening.
+// this logs things that are happening.
 events.on('order ready', orderReady);
 events.on('log', payload => log(payload));
 events.on('delivered', delivered);
