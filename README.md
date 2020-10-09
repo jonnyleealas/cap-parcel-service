@@ -1,14 +1,17 @@
 
 # code-academy-parcel-service
-Application demonstrating Event Driven Architecture(EDA) using JS/ Node.js
+Application demonstrating Event Driven Architecture(EDA) using JS/ Node.js/Socket.io
 
 ## Business Requirements
 As a business, our primary goal is to increase the visibility on the state of packages in the delivery process.
 
 We have 2 major clients for this service: Vendors and Drivers. Each need to have full and live visibility into the state of a package as it’s being delivered to a customer
 ## Architecture:
-Libraries Used:
+
 ```
+Javascript
+Node.js
+Socket.io
 faker
 
 ```
@@ -29,7 +32,7 @@ add a .env folder in your root
 npm test server.test.js
 ```
 ### Task Checklist
-**V1**
+**V1 Event Driven Programming**
 ```
 - [x] As products are sold that need to be delivered, we need to alert the drivers that a package need pickup.
 - [x] As a driver picks up a package, the store owner should know that the package is now “in transit”
@@ -39,6 +42,8 @@ npm test server.test.js
 ```
 **V2 Socket.io**
 ```
+- [x] UML
+- [x] README.md
 - [] CAPS will connect vendors and clients.
 - [] Each store will have its own room.
 - [] Start socket.io on a designated port.
