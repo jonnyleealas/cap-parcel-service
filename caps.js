@@ -6,20 +6,39 @@ require('./vendor.js');
 require('./drivers.js');
 
 // this logs things that are happening.
+events.on('order ready', payload => log('pickup', payload));
+// events.on('in-transit', payload => log('in-transit', payload));
+events.on('delivered', payload => delivered(payload));
 events.on('order ready', orderReady);
+
 events.on('log', payload => log(payload));
-events.on('delivered', delivered);
 function orderReady(payload){
   console.log('Order Ready For Pickup', payload);
 }
 
-function log(payload) {
+function log(stuff, payload) {
   let time = new Date();
-  console.log(`${chalk.bgYellow('EVENTS:')}`,{
+  let results = {
+    time: time,
+    events: events,
+    payload: payload,
+  };
+  console.log(`${chalk.bgYellow('EVENTS:', results)}`,{
     time,
   }, payload);
 }
 
 function delivered(payload) {
-  console.log('Package Delivered:', payload.orderId);
+  console.log(`${chalk.bgBlue('Package Delivered:')}`, payload.orderId);
 }
+
+// logger
+// function logger('event', payload){
+//     let time = new Date();
+//     let obj = {
+//         time: time,
+//         events: events,
+//         payload: payload,
+//     }
+//     console.log('Event:', obj)
+// }
