@@ -24,9 +24,7 @@ function logger(payload) {
     events: payload.event,
     payload: payload,
   };
-  console.log(`${chalk.bgYellow('EVENTS:', results)}`,{
-    time,
-  }, payload);
+  console.log(`${chalk.bgCyan('Events:')}`,results.events, results.time);
 }
 
 function delivered(payload) {
