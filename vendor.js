@@ -22,17 +22,12 @@ setInterval(()=>{
 }, 5000);
 
 // Events.on(delivered) calls thanks function
-events.on('delivered', intervalThanks);
+events.on('delivered', thanks);
 
-function intervalThanks(payload){
-  setInterval(() => {
-    thanks(payload);
-  }, 1000);
-}
-// Sends Thank You
 function thanks(payload){
   let text = console.log(`${chalk.bgGreen('Thank you for delivery of order:')}`,payload.orderId);
-  events.emit('log', text);
+  payload.event = 'Delivered';
+  events.emit('log', payload);
 }
 
 module.exports = {thanks};
