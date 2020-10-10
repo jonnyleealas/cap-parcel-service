@@ -23,5 +23,5 @@ function log(payload) {
 }
 
 function delivered(payload) {
-  console.log('Package Delivered:', payload.orderId);
+  console.log('Package Delivered:', payload.orderId)
 }
