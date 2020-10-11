@@ -25,7 +25,7 @@ setInterval(()=>{
 events.on('delivered', thanks);
 
 function thanks(payload){
-  let text = console.log(`${chalk.bgGreen('Thank you for delivery of order:')}`,payload.orderId);
+  let text = console.log(`${chalk.bgGreen('Thank you  delivery of order:')}`,payload.orderId);
   payload.event = 'Delivered';
   events.emit('log', payload);
 }
