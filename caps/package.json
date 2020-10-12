@@ -1,0 +1,27 @@
+{
+  "name": "code-academy-parcel-service",
+  "version": "1.0.0",
+  "description": "Application demonstrating Event Driven Architecture(EDA) using JS/ Node.js",
+  "main": "hub.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonnyleealas/code-academy-parcel-service.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonnyleealas/code-academy-parcel-service/issues"
+  },
+  "homepage": "https://github.com/jonnyleealas/code-academy-parcel-service#readme",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "dotenv": "^8.2.0",
+    "faker": "^5.1.0",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.1"
+  }
+}

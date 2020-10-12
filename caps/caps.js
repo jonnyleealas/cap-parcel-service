@@ -8,13 +8,19 @@ const chalk = require('chalk');
 
 
 // Connect io server
-io.on('connection', (socket) =>{
+io.on('connection',(socket) =>{
   console.log(`connection on ${socket.id}`);
-  // this logs things that are happening.
+});
+
+const capsIo = io.of('/caps');
+
+capsIo.on('connection', (socket)=>{
+  socket.on('join', (room)=>{
+    socket.join(room);
+  });
   socket.on('delivered', payload => delivered(payload));
   socket.on('order ready', orderReady);
   socket.on('log', payload => logger(payload));
-
 });
 
 
