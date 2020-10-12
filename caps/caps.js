@@ -1,33 +1,30 @@
-/* eslint-disable no-undef */
 'use strict';
-
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 4000;
 const io = require('socket.io')(port);
 const chalk = require('chalk');
 
-
-
-// Connect io server
-io.on('connection',(socket) =>{
-  console.log(`connection on ${socket.id}`);
+io.on('connection', (socket)=>{
+  console.log('io connected', socket.id);
 });
 
-const capsIo = io.of('/caps');
-
-capsIo.on('connection', (socket)=>{
+io.of('/caps').on('connection', (socket)=>{
   socket.on('join', (room)=>{
     socket.join(room);
   });
+
+  socket.emit('welcome', 'hello welcome to the games area');
   socket.on('delivered', payload => delivered(payload));
   socket.on('order ready', orderReady);
   socket.on('log', payload => logger(payload));
+
 });
 
 
+
 function orderReady(payload){
+  console.log('Order Ready', payload)
   payload.event = 'Order Ready For Pickup';
   io.emit('log', payload);
-  console.log('Order Ready For Pickup', payload);
 }
 
 function logger(payload) {
@@ -39,6 +36,7 @@ function logger(payload) {
   };
   console.log(`${chalk.bgCyan('Events:')}`,results.events, results.time);
 }
+
 
 function delivered(payload) {
   console.log(`${chalk.bgBlue('Package Delivered:')}`, payload.orderId);
