@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 'use strict';
-const host = 'http://localhost:4000';
+const host = 'http://localhost:8080';
 const io = require('socket.io-client');
 const faker = require('faker');
 const chalk = require('chalk');
@@ -17,25 +17,20 @@ vendorConnection.on('welcome', (msg)=>{
 
 // Creates Faker Obj
 setInterval(()=>{
-  const obj = {
+  const payload = {
     store: store,
     time: faker.date.recent(),
     orderId: faker.random.uuid(),
     customer: faker.name.findName(),
     address: faker.address.streetAddress(),
   };
-  vendorConnection.emit('order ready', obj);
-  console.log(obj);
+  vendorConnection.emit('order ready', payload);
+  console.log(payload);
 }, 5000);
 
 // Events.on(delivered) calls thanks function
-vendorConnection.on('delivered', thanks);
+vendorConnection.on('delivered',(payload)=>{
+  console.log('VENDER: thanks');
+});
 
-function thanks(payload){
-  console.log(`${chalk.bgGreen('Thank you for delivery of order:')}`,payload.orderId);
-  payload.event = 'Delivered';
-  vendorConnection.emit('log', payload);
-}
-
-module.exports = {thanks};
 

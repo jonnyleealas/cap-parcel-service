@@ -1,27 +1,31 @@
 /* eslint-disable no-undef */
 'use strict';
-const events = require('./events');
-const vendor = require('./vendor');
 const chalk = require('chalk');
+const host = 'http://localhost:8080';
+const io = require('socket.io-client');
 
-events.on('order ready', pickThisUp);
+
+
+const driverConnection = io.connect(`${host}/caps`);
+driverConnection.on('welcome', (msg)=>{
+  console.log('revieved:', msg);
+});
+
+driverConnection.on('order ready', pickThisUp);
+driverConnection.on('order ready', deliverMessage);
 
 function pickThisUp(payload){
-  setInterval(() => {
-    isInTransit(payload);
+  setTimeout(() => {
+    console.log('Order In Transit', payload.orderId);
+    driverConnection.emit('in transit', payload);
   }, 1000);
 }
 // Wait 3 seconds log Delivered
-function isInTransit(payload) {
-  payload.event = 'In Transit';
-  events.emit('log', payload);
-  setInterval(() => {
-    delivered(payload);
+function deliverMessage(payload) {
+  setTimeout(() => {
+    console.log('Delivery Message', payload.orderId);
+    driverConnection.emit('delivered', payload);
   }, 3000);
-}
-// Emit a delivered event with payload
-function delivered(payload) {
-  events.emit('delivered', payload);
 }
 
 
