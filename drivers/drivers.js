@@ -16,14 +16,14 @@ driverConnection.on('order ready', deliverMessage);
 
 function pickThisUp(payload){
   setTimeout(() => {
-    console.log('Order In Transit', payload.orderId);
+    console.log(`${chalk.bgMagenta('Order In Transit')}`, payload.orderId);
     driverConnection.emit('in transit', payload);
   }, 1000);
 }
 // Wait 3 seconds log Delivered
 function deliverMessage(payload) {
   setTimeout(() => {
-    console.log('Delivery Message', payload.orderId);
+    console.log(`${chalk.bgGrey('Delivery Message')}`, payload.orderId);
     driverConnection.emit('delivered', payload);
   }, 3000);
 }

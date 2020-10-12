@@ -30,7 +30,7 @@ setInterval(()=>{
 
 // Events.on(delivered) calls thanks function
 vendorConnection.on('delivered',(payload)=>{
-  console.log('VENDER: thanks');
+  console.log(`${chalk.bgGreen('VENDER: thanks for delivery')}`);
 });
 
 

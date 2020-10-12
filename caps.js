@@ -15,15 +15,15 @@ io.of('/caps').on('connection', (socket)=>{
 
   socket.emit('welcome', 'hello welcome to the games area');
   socket.on('order ready', (payload)=>{
-    logger('order ready',payload);
+    logger('Order Ready',payload);
     // socket.broadcast.emit('order ready');
   });
   socket.on('in transit', (payload)=>{
-    logger('in transit', payload);
+    logger('In Transit', payload);
     // socket.broadcast.emit('in transit');
   });
   socket.on('delivered', (payload)=>{
-    logger('delivered', payload);
+    logger('Delivered', payload);
     // socket.broadcast.emit('delivered');
   });
 });
