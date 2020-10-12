@@ -1,19 +1,28 @@
 /* eslint-disable no-undef */
 'use strict';
+require('dotenv').config();
+const port = process.env.PORT || 8080;
+const io = require('socket.io')(port);
 const events = require('../events/events');
 const chalk = require('chalk');
 require('../vendor/vendor.js');
 require('../drivers/drivers.js');
 
+
+// Connect io server
+io.on('connection', (socket) =>{
+  console.log(`connection on ${socket.id}`);
+});
+
 // this logs things that are happening.
-events.on('delivered', payload => delivered(payload));
+// events.on('delivered', payload => delivered(payload));
 // events.on('transic', payload+> logger )
-events.on('order ready', orderReady);
-events.on('log', payload => logger(payload));
+// events.on('order ready', orderReady);
+// events.on('log', payload => logger(payload));
 
 function orderReady(payload){
   payload.event = 'Order Ready For Pickup';
-  events.emit('log', payload);
+  // events.emit('log', payload);
   console.log('Order Ready For Pickup', payload);
 }
 
