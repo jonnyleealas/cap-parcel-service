@@ -8,14 +8,15 @@ const chalk = require('chalk');
 require('dotenv').config();
 const store = process.env.STORE || 'jonnys-store';
 
-
 const vendorConnection = io.connect(`${host}/caps`);
+// join connection
 vendorConnection.emit('join', store);
+// proof of life
 vendorConnection.on('welcome', (msg)=>{
   console.log('received:', msg);
 });
 
-// Creates Faker Obj
+// Creates Faker payload
 setInterval(()=>{
   const payload = {
     store: store,

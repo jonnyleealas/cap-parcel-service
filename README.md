@@ -3,9 +3,7 @@
 Application demonstrating Event Driven Architecture(EDA) using JS/ Node.js/Socket.io
 
 ## Business Requirements
-As a business, our primary goal is to increase the visibility on the state of packages in the delivery process.
-
-We have 2 major clients for this service: Vendors and Drivers. Each need to have full and live visibility into the state of a package as it’s being delivered to a customer
+We will need to build a front end and a backend
 ## Architecture:
 
 ```
@@ -44,14 +42,14 @@ npm test server.test.js
 ```
 - [x] UML
 - [x] README.md
-- [] CAPS will connect vendors and clients.
+- [x] CAPS will connect vendors and clients.
 - [] Each store will have its own room.
-- [] Start socket.io on a designated port.
-- [] Monitor pickup
-- [] Monitor in-transit
-- [] Monitor delivered
-- [] Broadcast events and payload to appropriate clients in CAPS.
-- [] Pickup can broadcast on all sockets.
+- [x] Start socket.io on a designated port.
+- [x] Monitor pickup
+- [x] Monitor in-transit
+- [x] Monitor delivered
+- [x] Broadcast events and payload to appropriate clients in CAPS.
+- [x] Pickup can broadcast on all sockets.
 - [] in-transit and delivered goes to correct vendor. Emit message and payload.
 ```
 ### Dependencies
